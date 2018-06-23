@@ -11,6 +11,7 @@ class BlackJack:
         self.player = []
         random.shuffle(self.deck)
         self.deal()
+        self.game_over = False
 
     def make_deck(self):
         deck = []
@@ -57,12 +58,14 @@ class BlackJack:
         p = self.hand_value(self.player)
         d = self.hand_value(self.dealer)
         if p == 21 or p < 21 and p > d or d > 21:
+            self.game_over = True
             print('player wins')
         elif p > 21 or d < 21 and d > p:
+            self.game_over = True
             print('dealer wins')
         elif d == p:
+            self.game_over = True
             print('tie game.')
-
 
     def game_state(self):
         print('DEALER\n')
@@ -71,10 +74,12 @@ class BlackJack:
         self.display_hand(self.player)
     
     def display_hand(self, hand):
-        string = ""
+        cards = []
         for card in hand:
-            string += f'| {card} |   '
-        print(string +' \n')
+            cards.append(f'| {card} |   ')
+        if hand == self.dealer and not self.game_over: 
+            cards[0] = '| \\\\ |   '
+        print("".join(cards) +' \n')
 
     
     def play(self):
@@ -88,5 +93,5 @@ class BlackJack:
 
         os.system('clear')
         self.dealer_play()
-        self.game_state()
         self.get_winner()
+        self.game_state()
