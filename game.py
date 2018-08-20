@@ -1,30 +1,30 @@
+from deck import Deck
 import random 
 import os
 
-class BlackJack:
-    
-    suits = ['\u2663', '\u2666', '\u2660', '\u2665']
+class Game:
 
     def __init__(self):
-        self.deck = self.make_deck()
+        # self.deck = self.make_deck()
+        self.deck = Deck()
+        self.deck.shuffle()
         self.dealer = []
         self.player = []
-        random.shuffle(self.deck)
         self.deal()
         self.game_over = False
 
-    def make_deck(self):
-        deck = []
-        for suit in self.suits:
-            deck += [f'A{suit}',f'K{suit}', f'Q{suit}', f'J{suit}' ]
-            for i in range(2,11):
-                deck.append(f'{i}{suit}')
-        return deck 
+    # def make_deck(self):
+    #     deck = []
+    #     for suit in self.suits:
+    #         deck += [f'A{suit}',f'K{suit}', f'Q{suit}', f'J{suit}' ]
+    #         for i in range(2,11):
+    #             deck.append(f'{i}{suit}')
+    #     return deck 
 
     def deal(self):
         for _i in range(1,3):
-            self.dealer.append(self.deck.pop())
-            self.player.append(self.deck.pop())
+            self.dealer.append(self.deck.deal())
+            self.player.append(self.deck.deal())
 
     def hand_value(self, hand):
         values = list(map(self.card_to_value, hand))
@@ -48,7 +48,7 @@ class BlackJack:
         return self.hand_value(hand) < 21
 
     def hit(self, player):
-        player.append(self.deck.pop())
+        player.append(self.deck.deal())
 
     def dealer_play(self):
         while self.hand_value(self.dealer) < 16:

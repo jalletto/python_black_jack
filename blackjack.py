@@ -1,5 +1,5 @@
-from blackjack_class import BlackJack
+from game import Game
 
-BlackJack().play()
+Game().play()
 
 
