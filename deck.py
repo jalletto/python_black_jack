@@ -1,7 +1,7 @@
 import random
 
 class Deck: 
-    suits = ['\u2663', '\u2666', '\u2660', '\u2665']
+    suits = [ '\u2663', '\u2666', '\u2660', '\u2665' ]
 
     def __init__(self):
         self.cards = self.make_deck()

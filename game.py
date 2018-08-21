@@ -1,25 +1,15 @@
 from deck import Deck
-import random 
 import os
 
 class Game:
 
     def __init__(self):
-        # self.deck = self.make_deck()
         self.deck = Deck()
         self.deck.shuffle()
         self.dealer = []
         self.player = []
         self.deal()
         self.game_over = False
-
-    # def make_deck(self):
-    #     deck = []
-    #     for suit in self.suits:
-    #         deck += [f'A{suit}',f'K{suit}', f'Q{suit}', f'J{suit}' ]
-    #         for i in range(2,11):
-    #             deck.append(f'{i}{suit}')
-    #     return deck 
 
     def deal(self):
         for _i in range(1,3):
