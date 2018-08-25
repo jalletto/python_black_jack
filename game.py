@@ -26,6 +26,17 @@ class Game:
     def dealer_play(self):
         while self.dealer.hand_total() < 16:
             self.hit(self.dealer)
+    
+    def player_play(self):
+        self.game_state()
+        player_choice = input("S to stay. H to hit.\n").lower()
+        while player_choice == "h" and self.can_hit(self.player):
+            os.system('clear')
+            self.hit(self.player)
+            if not self.can_hit(self.player):
+                self.game_state()
+                player_choice = input("S to stay. H to hit.\n").lower()
+
 
     def get_winner(self):
         player = self.player.hand_total()
@@ -43,7 +54,7 @@ class Game:
     def game_state(self):
         print(f'DEALER')
         self.display_hand(self.dealer.hand)
-        print(f'PLAYER Has {self.player.hand_total()}\n')
+        print(f'PLAYER Has { self.player.hand_total() }\n')
         self.display_hand(self.player.hand)
     
     def display_hand(self, hand):
@@ -54,16 +65,9 @@ class Game:
             cards[0] = card.card_back
         print("".join(cards) +' \n')
 
-    
+   
     def play(self):
-        self.game_state()
-        player_choice = input("S to stay. H to hit.\n").lower()
-        while player_choice == "h" and self.can_hit(self.player):
-            os.system('clear')
-            self.hit(self.player)
-            self.game_state()
-            player_choice = input("S to stay. H to hit.\n").lower()
-
+        self.player_play()
         os.system('clear')
         self.dealer_play()
         self.get_winner()
