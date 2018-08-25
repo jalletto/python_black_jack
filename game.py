@@ -33,7 +33,7 @@ class Game:
         while player_choice == "h" and self.can_hit(self.player):
             os.system('clear')
             self.hit(self.player)
-            if not self.can_hit(self.player):
+            if self.can_hit(self.player):
                 self.game_state()
                 player_choice = input("S to stay. H to hit.\n").lower()
 
