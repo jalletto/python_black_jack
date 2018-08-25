@@ -33,7 +33,7 @@ class Game:
         if player == 21 or player < 21 and player > dealer or dealer > 21:
             self.game_over = True
             print('player wins')
-        elif player > 21 or dealer < 21 and d > player:
+        elif player > 21 or dealer < 21 and dealer > player:
             self.game_over = True
             print('dealer wins')
         elif dealer == player:
