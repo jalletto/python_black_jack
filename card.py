@@ -7,4 +7,4 @@ class Card:
         self.value = value 
 
     def __str__(self):
-        return f'| { self.face if self.face else self.value }{self.suit} | '
+        return f'| { self.face if self.face else self.value }{self.suit}  | '
