@@ -18,7 +18,7 @@ class Game:
             self.player.hand.append(self.deck.deal())
    
     def can_hit(self, player):
-        return player.hand_total()  < 21
+        return player.hand_total() < 21
 
     def hit(self, player):
         player.hand.append(self.deck.deal())
