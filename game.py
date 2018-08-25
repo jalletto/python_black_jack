@@ -4,12 +4,12 @@ import os
 class Game:
 
     def __init__(self):
+        self.game_over = False
         self.deck = Deck()
-        self.deck.shuffle()
         self.dealer = []
         self.player = []
+        self.deck.shuffle()
         self.deal()
-        self.game_over = False
 
     def deal(self):
         for _i in range(1,3):
@@ -17,22 +17,15 @@ class Game:
             self.player.append(self.deck.deal())
 
     def hand_value(self, hand):
-        values = list(map(self.card_to_value, hand))
+        values = []
+        for card in hand:
+            values.append(card.value)
         total = sum(values)
         if total > 21 and 11 in values:
             i = values.index(11)
             values[i] = 1
             return sum(values)
         return total 
-    
-    def card_to_value(self, card):
-        face_cards = ['Q', 'K', 'J', '1']
-        card_val = card[0]
-        if card_val in face_cards:
-            card_val = '10'
-        if card_val == 'A':
-            card_val = '11'
-        return int(card_val)
    
     def can_hit(self, hand):
         return self.hand_value(hand) < 21
@@ -66,9 +59,9 @@ class Game:
     def display_hand(self, hand):
         cards = []
         for card in hand:
-            cards.append(f'| {card} |   ')
+            cards.append(str(card))
         if hand == self.dealer and not self.game_over: 
-            cards[0] = '| \\\\ |   '
+            cards[0] = '| \\\\ | '
         print("".join(cards) +' \n')
 
     
