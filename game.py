@@ -51,7 +51,7 @@ class Game:
         for card in hand:
             cards.append(str(card))
         if hand == self.dealer.hand and not self.game_over: 
-            cards[0] = '| \\\\ |   '
+            cards[0] = card.card_back
         print("".join(cards) +' \n')
 
     

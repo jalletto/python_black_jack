@@ -12,15 +12,12 @@ class Deck:
         for suit in self.suits:
             deck += [Card(suit, 11, 'A'), Card(suit, 10, 'K'),
                      Card(suit, 10, 'Q'), Card(suit, 10, 'J')]
-            # deck += [f'A{suit}', f'K{suit}', f'Q{suit}', f'J{suit}']
             for i in range(2, 11):
                 deck.append(Card(suit, i ))
         return deck
 
     def deal(self): 
        return self.cards.pop()
-
-   
 
     def shuffle(self):
         random.shuffle(self.cards)
